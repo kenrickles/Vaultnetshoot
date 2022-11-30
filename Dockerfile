@@ -10,67 +10,71 @@ RUN /tmp/fetch_binaries.sh
 FROM alpine:3.16.2
 
 RUN set -ex \
-    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
-    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-    && apk update \
-    && apk upgrade \
-    && apk add --no-cache \
-    apache2-utils \
-    bash \
-    bind-tools \
-    bird \
-    bridge-utils \
-    busybox-extras \
-    conntrack-tools \
-    curl \
-    dhcping \
-    drill \
-    ethtool \
-    file\
-    fping \
-    iftop \
-    iperf \
-    iperf3 \
-    iproute2 \
-    ipset \
-    iptables \
-    iptraf-ng \
-    iputils \
-    ipvsadm \
-    jq \
-    libc6-compat \
-    liboping \
-    mtr \
-    net-snmp-tools \
-    netcat-openbsd \
-    nftables \
-    ngrep \
-    nmap \
-    nmap-nping \
-    nmap-scripts \
-    openssl \
-    py3-pip \
-    py3-setuptools \
-    scapy \
-    socat \
-    speedtest-cli \
-    openssh \
-    strace \
-    tcpdump \
-    tcptraceroute \
-    tshark \
-    util-linux \
-    vim \
-    git \
-    zsh \
-    websocat \
-    swaks \
-    perl-crypt-ssleay \
-    perl-net-ssleay
+  && echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+  && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+  && echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+  && apk update \
+  && apk upgrade \
+  && apk add --no-cache \
+  apache2-utils \
+  bash \
+  bind-tools \
+  bird \
+  bridge-utils \
+  busybox-extras \
+  conntrack-tools \
+  curl \
+  dhcping \
+  drill \
+  ethtool \
+  file\
+  fping \
+  iftop \
+  iperf \
+  iperf3 \
+  iproute2 \
+  ipset \
+  iptables \
+  iptraf-ng \
+  iputils \
+  ipvsadm \
+  jq \
+  libc6-compat \
+  liboping \
+  mtr \
+  net-snmp-tools \
+  netcat-openbsd \
+  nftables \
+  ngrep \
+  nmap \
+  nmap-nping \
+  nmap-scripts \
+  openssl \
+  py3-pip \
+  py3-setuptools \
+  scapy \
+  socat \
+  speedtest-cli \
+  openssh \
+  strace \
+  tcpdump \
+  tcptraceroute \
+  tshark \
+  util-linux \
+  vim \
+  git \
+  zsh \
+  websocat \
+  swaks \
+  perl-crypt-ssleay \
+  perl-net-ssleay \
+  httpie \
+  libcap \
+  vault \
+  && setcap -r /usr/sbin/vault
 
 # Installing httpie ( https://httpie.io/docs#installation)
-RUN pip3 install --upgrade httpie
+# RUN pip3 install --upgrade pip wheel httpie
 
 # Installing ctop - top-like container monitor
 COPY --from=fetcher /tmp/ctop /usr/local/bin/ctop
